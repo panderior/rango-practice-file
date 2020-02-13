@@ -7,7 +7,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     # any url pattern starting with 'rango' is directed to the
     # rango urls.py file
-    url(r'^xit'
-        r'rango/', include('rango.urls')),
+    url(r'^rango/', include('rango.urls')),
 ]
 
