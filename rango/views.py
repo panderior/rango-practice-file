@@ -11,6 +11,5 @@ def index(request):
 
 
 def about(request):
-    abt = "<h2>Rango says here is the about page</h2><br><a href='/rango/'>Home</a>"
-    return HttpResponse(abt)
+    return render(request, 'rango/about.html', {})
 
