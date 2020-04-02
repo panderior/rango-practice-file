@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
-    <div>
-        {% if category %}
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+    {{ category.name }}
+{% endblock %}
+
+{% block body_block %}
+    {% if category %}
             <h1>{{ category.name }}</h1>
+            
             {% if pages %}
                 <ul>
                     {% for page in pages %}
@@ -17,12 +17,8 @@
             {% else %}
                 <strong>No pages currently in category.</strong>
             {% endif %}
+            <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
         {% else %}
             The specified category doesn't exist!
         {% endif %}
-    </div>
-
-    <a href="/rango/category/{{category.slug}}/add_page/"> Add a New Page </a> <br />
-    <a href="/rango/" >Home</a>
-</body>
-</html>
+{% endblock %}

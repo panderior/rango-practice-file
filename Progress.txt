@@ -1,0 +1,21 @@
+Tango with Django: Rango project
+
+8) Chapter 8: Working with Templates
+   - Instead of hardcoding the url patterns into templates, use either of the following options:
+      $ use name of url mapping
+      $ reference the view directly by navigating from app to view to class
+   - create a base.html file in templates/rango which is the skeleton html others inherit
+   - edit category.html im templates/rango to inherit from base.html and remove any repeating code
+   - edit the following html pages in templates/rango to inherit from base.html and use url template tag
+      $ index.html
+      $ category.html
+      $ add_page.html
+      $ add_category.html
+      $ about.html
+   - create a custom templete to retrive and return category list
+      $ create a directory called templatetags in rango/ and create the following files within into
+         * __init__.py     (leave empty)
+         * rango_template_tags.py and create a template tag
+      $ also create and edit cats.html in templates/ which uses the above created template tag
+   - edit base.html to load and use the created template_tag
+   - 
