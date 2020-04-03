@@ -1,5 +1,6 @@
 from django import forms
-from rango.models import Category, Page
+from django.contrib.auth.models import User
+from rango.models import Category, Page, UserProfile
 # from django.core.validators import URLValidator
 
 
@@ -33,3 +34,15 @@ class PageForm(forms.ModelForm):
             return cleaned_data
 
 
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('website', 'picture')
