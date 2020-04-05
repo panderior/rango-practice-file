@@ -68,4 +68,23 @@ Tango with Django: Rango project
       $ update the index view accordingly
    - edit views.py to update about view to use cookie handler function and return user visit number
    - edit about.html to display the number of times a user has visited
-  
+
+11) Chapter 11 - User Authentication with Django-Registration-Redux
+   - install django-registration-redux
+      $ pip install -U django-registration-redux
+   - add the above package (registration) to Installed_apps and set needed variables by editting settings.py (and ofcourse migrate)
+   - edit urls.py in tango_with_django/ to include url mapping for registration package
+   - create a registration directory in templates/ folder and create and edit the following files:
+      $ login.html
+      $ registration_form.html
+      $ registration_complete.html
+      $ logout.html
+   - edit base.html in templates/rango to change urls to redux urls:
+      $ change registration, login & logout to registration_redux urls
+   - add a password change functionlity using registration_redux
+      $ create and edit password_change_form.html in templates/registration
+      $ create and edit password_change_done.html in templates/registration
+      $ add password change link to base.html in templates/rango
+
+12) Chapter 12 - Bootstrapping Rango
+   - 
