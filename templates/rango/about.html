@@ -12,6 +12,10 @@
         This tutorial has been put together by Dug-rango.
     </div>
 
+    {% if visits %}
+        <p> <strong> You have visited this site {{ visits }} times </strong> </p>
+    {% endif %}
+
     <div>
         <img src="{{ MEDIA_URL }}puppy.jpg" />
     </div>

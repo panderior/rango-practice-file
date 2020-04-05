@@ -58,4 +58,14 @@ Tango with Django: Rango project
       $ edit login.html in templates/rango to display information if incorrect credential variable is recieved from login view
    - update restricted view in views.py to use restricted template that is created in templates/rango and the restricted.html inherits base.html template
 
-10) Chapter 10 -
+10) Chapter 10 - Cookies & Sessions
+   - edit views.py in rango/ to handle number of visits in Cookies
+      $ create a cookie handler helper function to check for cookie in request, check last visit and send a cookie in respose
+      $ use the helper function created above in index view
+   - edit views.py to include the usage of sessions on the server side
+      $ create a new server side cookie getter function to access cookie data on the server side
+      $ update cookie handler function to use the server side cookie getter function
+      $ update the index view accordingly
+   - edit views.py to update about view to use cookie handler function and return user visit number
+   - edit about.html to display the number of times a user has visited
+  
