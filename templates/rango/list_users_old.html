@@ -1,0 +1,28 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+   Users
+{% endblock %}
+
+{% block body_block %}
+   <div>
+      {% if users_list %}
+      <br >
+         <h3> Users of Rango </h3>
+         <div class="list-group">
+            {% for user_info in users_list %}
+               {% if user_info.username != user.username %}
+                  <div class="list-group-item">
+                     <h4 class="list-group-heading"> {{ user_info.username }} &nbsp; &nbsp; </h4>
+                     <p class="list-group-item-text"> 
+                        {{ user_info.email }} 
+                        <br> 
+                        {{ user_info.website }}
+                     </p>
+                  </div>
+               {% endif %}
+            {% endfor %}
+         </div>
+      {% endif %}
+   </div>
+{% endblock %}

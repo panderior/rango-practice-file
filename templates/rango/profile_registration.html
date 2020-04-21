@@ -1,0 +1,25 @@
+{% extends 'rango/base.html' %}
+
+{% block title_block %}
+   Add Profile
+{% endblock %}
+
+{% block body_block %}
+   <form role="form" method="post" action="{% url 'rango:add_profile' %} " enctype="multipart/form-data">
+      <h2 class="form-signin-heading"> Add Profiles </h2>
+      {% csrf_token %}
+      
+      <p class="required">
+         <label class="required" for="id_website"> Website: </label>
+         <input class="form-control" id="id_website" maxlength="200" name="website" type="url" />
+      </p>
+      
+      <p class="required">
+         <label class="required" for="id_picture"> Picture: </label>
+         <input class="form-control" id="id_picture" name="picture" type="file" />
+      </p>
+
+      <br />
+      <button class="btn btn-primary" type="submit" name="submit"> Save Profile </button>
+   </form>
+{% endblock %}

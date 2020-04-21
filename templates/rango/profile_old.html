@@ -1,0 +1,60 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+   Profile
+{% endblock %}
+
+{% block body_block %}
+   <h1 class="form-signin-heading"> {{ selecteduser.username }} Profile </h1>
+   <img src="{{ MEDIA_URL }}{{ userprofile.picture }}" 
+        width="300" height="300"
+        alt="{{ selecteduser.username }} Picture">
+   <br />
+
+   <div>
+      {% if selecteduser.username == user.username %}
+      <!-- 
+         <form role="form" id="profile_form" method="post" action="{% url 'rango:profile' %}" enctype="multipart/form-data" >
+            
+            {% csrf_token %}
+            <div class="form-group">
+               <p class="required">
+                  <label class="required" for="id_username"> Username: </label>
+                  <input class="form-control" id="id_username" maxlength="30" name="username" type="text" value="{{ user.username }}" />
+               </p>
+
+               <p class="required">
+                  <label class="required" for="id_email"> Email: </label>
+                  <input class="form-control" id="id_email" maxlength="254" name="email" type="email" value="{{ user.email }}" />
+               </p>
+
+               <p class="required">
+                  <label class="required" for="id_website"> Website: </label>
+                  <input class="form-control" id="id_website" maxlength="200" name="website" type="url" value="{{ user_profile.website }}" />
+               </p>
+
+               <p class="required">
+                  <label class="required" for="id_picture"> Picture: </label>
+                  <input class="form-control" id="id_picture" name="picture" type="file" />       
+               </p>
+            </div>
+
+            <br />
+            <button class="btn btn-primary" type="submit" name="submit"> Update </button> 
+         </form> -->
+
+         <form method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update" />
+         </form>
+
+      {% else %}
+         <p> <strong> Website: </strong> <a href="{{ userprofile.website }}"> {{ userprofile.website }} </a> 
+         </p>
+      {% endif %}
+   </div>
+   <div id="edit_profile"></div>
+
+{% endblock %}

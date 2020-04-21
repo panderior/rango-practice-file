@@ -119,5 +119,32 @@ Tango with Django: Rango project
    - edit urls.py in rango/ to app url mapping to search view
    - edit base.html in templates/rango to add the search url
 
-14) 
-   
+14) Chapter 14 - Making Rango Tango - Excercises
+   - add a track page clickthrough functionality
+      $ add a view called track_url by editting views.py in rango/
+         * this view gets the GET request with page id
+         * increments the view field of the page and save the changes
+         * redirect the user to the page url
+      $ map the track_url view to url '/rango/goto/?page_id=1' by editting urls.py in rango/
+   - add searching within a category page
+      $ remove search link from menu bar by editting base.html in templates/rango
+      $ edit category.html in templates/rango by adding the html code from search.html in the same directory
+      $ update the search form action so that it refers to show category view url
+      $ update the show category view to handle POST request from the search form by editting views.py in rango/
+      $ edit category.html in templates/rango so that only logged in users can search
+   - add a feature to allow users to create profile after registering
+      $ create and edit profile_registration.html file in templates/rango/
+      $ create a view called register_profile by editting views.py in rango/
+      $ map the register_profile view to a url by editting urls.py in rango/
+      $ edit urls.py in tango_with_django/ directory so as to redirect the success url in MyRegistrationView to the url mapping created above
+   - add a feature to allow users to view and modify user info and profile
+      $ create and edit profile.html in templates/rango that displays user profile and allows for edit of one's info
+      $ add a new view called profile that handles displaying and updating profile by editting views.py in rango/
+      $ add a url mapping for the profile view created above
+      $ add a link in base.html in templates/rango to Profile view and thus template
+   - add a feature to let users browse other user profiles
+      $ create and edit list_profiles.html file in templates/rango to diaplay list of rango users
+      $ create a new view called list_profiles to handle fetching of users list and sending to template
+      $ add a url mapping for the list_profiles view mentioned above
+      $ make sure only logged in users can view rango users profiles
+      $ add a link in base.html navigation list to list_profile view and template
