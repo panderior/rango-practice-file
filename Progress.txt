@@ -19,6 +19,7 @@ Tango with Django: Rango project
       $ also create and edit cats.html in templates/ which uses the above created template tag
    - edit base.html to load and use the created template_tag
 
+
 9) Chapter 9: User Authentication
    - install Bcrypt for more secure password hashing
       $ pip install bcrypt
@@ -58,6 +59,7 @@ Tango with Django: Rango project
       $ edit login.html in templates/rango to display information if incorrect credential variable is recieved from login view
    - update restricted view in views.py to use restricted template that is created in templates/rango and the restricted.html inherits base.html template
 
+
 10) Chapter 10 - Cookies & Sessions
    - edit views.py in rango/ to handle number of visits in Cookies
       $ create a cookie handler helper function to check for cookie in request, check last visit and send a cookie in respose
@@ -68,6 +70,7 @@ Tango with Django: Rango project
       $ update the index view accordingly
    - edit views.py to update about view to use cookie handler function and return user visit number
    - edit about.html to display the number of times a user has visited
+
 
 11) Chapter 11 - User Authentication with Django-Registration-Redux
    - install django-registration-redux
@@ -86,5 +89,35 @@ Tango with Django: Rango project
       $ create and edit password_change_done.html in templates/registration
       $ add password change link to base.html in templates/rango
 
+
 12) Chapter 12 - Bootstrapping Rango
-   - 
+   - download & save bootstrap files to static folder (optional)
+   - create & edit base_bootstrap.html in templates/rango and write bootstrap code
+   - rename the previous base.html file to base_old.html and rename the base_bootstrap.html to base.html
+   - edit the following files so they are refactored to bootstrap code
+      $ index.html in templates/rango
+      $ login.html in templates/registration
+      $ add_page.html in templates/rango
+      $ add_category in templates/rango
+      $ registration_form.html in templates/registration
+   - install Django-Bootstrap-Toolkit and add to Installed apps in settings.py
+      $ pip install django-bootstrap-toolkit
+   - edit add_category.html in templates/rango so as to refactor code to use bootstrap_toolkit
+
+
+13) Chapter 13 - Google custom Search 
+   - go to "https://console.developers.google.com/" and create a new project
+   - then search for Custom Search API and enable it
+   - then go to credentials and generate an API key
+   - then go to "https://cse.google.com/" and create a new search engine
+   - install google-api-python-client package which is used to interact with the google custom saerch api
+      $ pip install google-api-python-client
+   - create and edit google_custom_search.py file in rango/ directory
+      $ the file retrives keys, makes request based on query and resturns result
+   - create and edit search.html in templates/rango/
+   - add a new search view by editting views.py in rango/ directory
+   - edit urls.py in rango/ to app url mapping to search view
+   - edit base.html in templates/rango to add the search url
+
+14) 
+   
