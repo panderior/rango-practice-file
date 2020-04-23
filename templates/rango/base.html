@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load rango_template_tags %}
 
+
 <html lang="en">
 <head>
    <meta charset="utf-8">
@@ -20,6 +21,12 @@
 
    <!-- <link href="http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+   <style>
+      .btn-circle {
+         border-radius: 25px;
+      }
+   </style>
 
 </head>
 
@@ -82,9 +89,25 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-sm-3 col-md-2 sidebar">
-            {% block sidebar_block %}
-               {% get_category_list category %}
-            {% endblock %}
+            <ul class="nav nav-list flex-column">
+               <li class="nav-item"> Type to find a category </li>
+               <form>
+                  <li class="nav-item">
+                     <input class="search-query form-control" type="text" name="suggestion" id="suggestion" value="" />
+                  </li>
+               </form>
+            </ul>
+            <hr />
+            
+            <div id="cats">
+               {% block sidebar_block %}
+                  {% get_category_list category %}
+               {% endblock %}
+            </div>
+
+            
+            
+
          </div>
 
          <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
@@ -97,13 +120,18 @@
    </div>
 
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"> </script> -->
-   <script src="{% static 'jquery/jquery.min.js' %}"></script>
+   <!-- <script src="{% static 'jquery/jquery.min_old.js' %}"></script> -->
 
    <!-- <script src="http://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"> </script> -->
    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
    <!-- <script src="http://v4-alpha.getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"> </script> -->
    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"> -->
+   <script src="{% static 'jquery/jquery.min.js' %}"></script>
+   <script src="{% static 'jquery/rango-jquery.js' %}"></script>
+   <script src="{% static 'jquery/rango-ajax.js' %}"></script>
 
 </body>
 

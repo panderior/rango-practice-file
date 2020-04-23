@@ -10,17 +10,20 @@ from rango.models import Category, Page
 
 def populate():
     python_pages = [
-        {"title": "Official Python Tutorial", "url": "http://docs.python.org/2/tutorial/", "views": 125},
+        {"title": "Official Python Tutorial",
+            "url": "http://docs.python.org/2/tutorial/", "views": 125},
         {"title": "How to Think like a Computer Scientist", "url": "http://www.greenteapress.com/thinkpython/",
          "views": 65},
-        {"title": "Learn Python in 10 Minutes", "url": "http://www.korokithakis.net/tutorials/python/", "views": 37}
+        {"title": "Learn Python in 10 Minutes",
+            "url": "http://www.korokithakis.net/tutorials/python/", "views": 37}
     ]
 
     django_pages = [
         {"title": "Official Django Tutorial", "url": "https://docs.djangoproject.com/en/1.9/intro/tutorial01/",
          "views": 210},
         {"title": "Django Rocks", "url": "http://www.djangorocks.com/", "views": 65},
-        {"title": "How to Tango with Django", "url": "http://www.tangowithdjango.com/", "views": 147}
+        {"title": "How to Tango with Django",
+            "url": "http://www.tangowithdjango.com/", "views": 147}
     ]
 
     other_pages = [
@@ -28,10 +31,22 @@ def populate():
         {"title": "Flask", "url": "http://flask.pocoo.org", "views": 112}
     ]
 
+    pascal_pages = [
+        {"title": "Free Pascal", "url": "https://www.freepascal.org/", "views": 10},
+    ]
+
     cats = {
         "Python": {"pages": python_pages, "views": 128, "likes": 64},
         "Django": {"pages": django_pages, "views": 64, "likes": 32},
         "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16}
+        "Pascal": {"pages": pascal_pages, "views": 50, "likes": 15},
+        "Perl": {},
+        "PHP": {},
+        "Prolog": {},
+        "PostScript": {},
+        "Programming": {},
+        "JavaScript": {},
+
     }
 
     for cat, cat_data in cats.items():
@@ -52,7 +67,7 @@ def add_page(cat, title, url, views=0):
     return p
 
 
-def add_cat(name, view, like):
+def add_cat(name, view=0, like=0):
     c = Category.objects.get_or_create(name=name)[0]
     c.views = view
     c.likes = like

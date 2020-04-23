@@ -110,16 +110,18 @@ Tango with Django: Rango project
    - then search for Custom Search API and enable it
    - then go to credentials and generate an API key
    - then go to "https://cse.google.com/" and create a new search engine
-   - install google-api-python-client package which is used to interact with the google custom saerch api
+   - install google-api-python-client package which is used to interact with the google custom search api
       $ pip install google-api-python-client
    - create and edit google_custom_search.py file in rango/ directory
       $ the file retrives keys, makes request based on query and resturns result
+      $ save your keys by creating a file for them and saving the files under keys/ directory
+         * add "*.key" to your git ignore so that your keys don't get pushed to git repositories
    - create and edit search.html in templates/rango/
    - add a new search view by editting views.py in rango/ directory
    - edit urls.py in rango/ to app url mapping to search view
    - edit base.html in templates/rango to add the search url
 
-14) Chapter 14 - Making Rango Tango - Excercises
+14 & 15) Chapter 14 & 15 - Making Rango Tango - Excercises & Hints
    - add a track page clickthrough functionality
       $ add a view called track_url by editting views.py in rango/
          * this view gets the GET request with page id
@@ -148,3 +150,54 @@ Tango with Django: Rango project
       $ add a url mapping for the list_profiles view mentioned above
       $ make sure only logged in users can view rango users profiles
       $ add a link in base.html navigation list to list_profile view and template
+
+16) Chapter 16 - JQuery and Django
+   - add a script tag for jquery in base.html in templates/rango 
+      $ download and save jquery.min.js in static/jquery/ directory
+      $ create and edit rango-jquery.js in static/jquery/
+      $ add a script tag to reference the above js files from where they are stored locally
+   -  try out a series of JQuery examples from the book to get familiar with it
+
+
+17) Chapter 17 - AJAX in Django with JQuery
+   - create rango-ajax.js file in static/jquery/ directory and include it into base.html in templates/rango
+      $ use script tag to refer to rango-ajax.js file
+   - Add a like functionality to category
+      $ edit category.html in templates/rango to add a like button and dispaly the number of likes so far
+      $ create a new view called like_category by editting views.py in rango/
+         * this view gets the category id in request, increments the number of likes and returns the updates number of likes for that category
+      $ add url mapping for the like_category view by editting urls.py in rango/
+      $ edit rango-ajax.js file in static/jquery to add event functionality to the like button on category.html in templates/rango
+         * on the click of the like buttton, the ajax makes request to url specified for like_category view
+         * the like_category view in views.py (in rango/) will increment the number of likes and return the updated value
+         * the rango-ajax.js will recieve the updated like value and replace the exisitng like value oncategory.html
+         * also the rango-ajax file will hide the like button (but the button will reappear if the user reloads the page)
+   - add Inline category suggestion feature to rango
+      $ add a helper function called get_category_list by editting views.py in rango/
+         * this functions returns a list of categories based on the input string provided
+      $ create a new view called suggest_category by editting views.py in rango/
+         * this view uses the get_category_list helper function
+      $ add url mapping for suggest_category view by editting urls.py in rango/
+      $ edit base.html in templates/rango so as to add search input field and a div to display suggestion
+         * edit the side nav bar div
+      $ edit rango-ajax.js to add an event when key is typed into the input field added by above step
+         * when user types, the ajax file gets the typed string
+         * then it sends it to suggest_category view via the mapped url
+         * the suggest_category view returns list of category in html markup code
+         * then the ajax function recieves the html response and updates the div tag placed to display results
+   - add an Add button on the result of search so that users can add pages on the fly
+      $ edit the search result part of category.html in templates/rango and add an Add button
+      $ edit rango-ajax.js file to add click event to the button added in the above step
+      $ create a view called auto_add_page by ediiting views.py
+         * this view gets invoked by ajax function when button is clicked
+         * it addes the chosen page and returns an updated list of pages for the current category
+      $ create and edit page_list.html in templates/rango
+         * this gets list of pages from auto_add_page view, gets rendered and returned to category.html in which it gets displayed
+      $ add a url mapping for the auto_add_page view in urls.py
+       
+            
+   
+
+      $ update the population script populate_rango.py by adding new categories (so as to give options for suggestions for user)
+         *add categories like: Pascal, Perl, PHP, Prolog, PostScript Programming and JavaScript
+   
