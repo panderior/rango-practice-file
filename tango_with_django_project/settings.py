@@ -32,9 +32,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '&#-q@=)i-3a7=^kqwr3u9+-wtw1^k6w!4odkpkj_-(z)i7r1cg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://rangosearch.pythonanywhere.com']
 
 
 # Application definition

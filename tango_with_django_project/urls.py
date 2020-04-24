@@ -7,6 +7,7 @@ from registration.backends.simple.views import RegistrationView
 from django.core.urlresolvers import reverse
 
 
+
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return reverse('rango:add_profile')

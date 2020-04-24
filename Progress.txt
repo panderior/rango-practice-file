@@ -223,4 +223,18 @@ Tango with Django: Rango project
 
 
 19) Chapter 19 - Deploying your project
+   - create a PythonAnywhere free account (this a platform to serve your web apps)
+   - create a virtual enviroment and install packages
+      $ select bash as a console from the PythonAnywhere dashboard and run the following commad:
+         * mkvirtualenv --python=python3.5.9 rango
+      $ update the requirements.txt file by running the following command
+         * pip freeze => requirements.txt
+      $ upload the requirements.txt to the PythonAnywhere account
+      $ install all packages by running pip over requirements.txt
+         * pip install -r requirements.txt
+      $ managing virtual enviroment
+         * to load up (activate) a virtual enviroment run the following command
+            # workon <venv_name>
+         * to leave virtual enviroment
+            # deactivate 
    - 
