@@ -1,9 +1,75 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.staticfiles import finders
+from rango.models import Category, Page
+from datetime import datetime
 
+
+# Helper function to add categories
+def add_cat(name, views, likes):
+    c = Category.objects.get_or_create(name=name)[0]
+    c.views = views
+    c.likes = likes
+    c.save()
+    return c
+
+
+def add_page(cat, title, url):
+    p = Page.objects.get_or_create(title=title, category=cat, url=url)[0]
+    p.first_visit = datetime.now()
+    p.last_visit = datetime.now()
+    p.save()
+    return p
+
+
+class CategoryMethodTests(TestCase):
+    def test_ensure_views_are_positive(self):
+        cat = Category(name='test', views=-1, likes=0)
+        cat.save()
+        self.assertEqual((cat.views >= 0), True)
+
+    def test_slug_line_creation(self):
+        cat = Category(name='Random Category String', views=-1, likes=0)
+        cat.save()
+        self.assertEqual(cat.slug, 'random-category-string')
+
+
+class PageMethodTests(TestCase):
+    def test_ensure_first_and_last_visit_timedates_dont_overlap(self):
+        cat = add_cat('ctest', 1, 1)
+        page = add_page(cat, 'test_title', 'http"//www.test.com')
+
+        # test_url = 'rango/goto/?page_id=' + str(page.id)
+
+        # response = self.client.get(reverse('goto'))
+
+        self.assertEqual((page.first_visit <= datetime.now()), True)
+        self.assertEqual((page.last_visit <= datetime.now()), True)
+        self.assertEqual((page.first_visit <= page.last_visit), True)
+
+
+class IndexViewTests(TestCase):
+    def test_index_view_with_no_categories(self):
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "There are no categories present.")
+        self.assertQuerysetEqual(response.context['categories'], [])
+
+    def test_index_view_with_categories(self):
+        add_cat('test', 1, 1)
+        add_cat('temp', 1, 1)
+        add_cat('tmp', 1, 1)
+        add_cat('tmp test temp', 1, 1)
+
+        response = self.client.get(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "tmp test temp")
+
+        num_cats = len(response.context['categories'])
+        self.assertEqual(num_cats, 4)
 
 # Thanks to Enzo Roiz https://github.com/enzoroiz who made these tests during an internship with us
+
 
 class GeneralTests(TestCase):
     def test_serving_static_files(self):
@@ -11,6 +77,8 @@ class GeneralTests(TestCase):
         result = finders.find('images/rango.jpg')
         self.assertIsNotNone(result)
 
+
+'''
 
 class IndexPageTests(TestCase):
 
@@ -239,3 +307,4 @@ class Chapter7ViewTests(TestCase):
     # <a href="/rango/add_category/">Add a New Category</a><br />
 
     # test if the add_page.html template exists.
+'''

@@ -1,11 +1,10 @@
+from rango.models import Category, Page
+import django
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'tango_with_django_project.settings')
 
-import django
 django.setup()
-
-from rango.models import Category, Page
 
 
 def populate():
@@ -38,7 +37,7 @@ def populate():
     cats = {
         "Python": {"pages": python_pages, "views": 128, "likes": 64},
         "Django": {"pages": django_pages, "views": 64, "likes": 32},
-        "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16}
+        "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16},
         "Pascal": {"pages": pascal_pages, "views": 50, "likes": 15},
         "Perl": {},
         "PHP": {},

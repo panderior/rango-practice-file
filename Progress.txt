@@ -173,6 +173,8 @@ Tango with Django: Rango project
          * the rango-ajax.js will recieve the updated like value and replace the exisitng like value oncategory.html
          * also the rango-ajax file will hide the like button (but the button will reappear if the user reloads the page)
    - add Inline category suggestion feature to rango
+      $ update the population script populate_rango.py by adding new categories (so as to give options for suggestions for user)
+         *add categories like: Pascal, Perl, PHP, Prolog, PostScript Programming and JavaScript
       $ add a helper function called get_category_list by editting views.py in rango/
          * this functions returns a list of categories based on the input string provided
       $ create a new view called suggest_category by editting views.py in rango/
@@ -194,10 +196,31 @@ Tango with Django: Rango project
       $ create and edit page_list.html in templates/rango
          * this gets list of pages from auto_add_page view, gets rendered and returned to category.html in which it gets displayed
       $ add a url mapping for the auto_add_page view in urls.py
-       
-            
-   
 
-      $ update the population script populate_rango.py by adding new categories (so as to give options for suggestions for user)
-         *add categories like: Pascal, Perl, PHP, Prolog, PostScript Programming and JavaScript
-   
+
+18) Chapter 18 - Automated Testing
+   - run command to test rango
+      $ python manage.py test rango
+   - add a test case for Category by editting tests.py in rango/
+      $ create a class to hold test methods for Category
+      $ test if the Category model accepts negative views
+      $ if test fails then update the Category model save method to handle the above issue
+      $ add a test method to check if the slug creation method works
+   - add test for index page views
+      $ create a class for index view tests
+      $ write a test function to check if index page displays "there are no categories" if there are no categories
+      $ on the same function check if the response status code is 200 check if the context dictionary for category is empty
+      $ create another test to check if the creation of Categories works
+         * use a helper function to save categories
+   - install coverage and run test
+      $ pip install coverage
+      $ coverage run --source='.' manage.py test rango      (run coverage test)
+      $ coverage report                                     (view coverage report)
+   - update model of Page to include first_visit and last_visit fields
+      $ migrate your changes
+      $ update add page functioanlity and goto page functionality to feed approporiate values to the new datetime fields of Page model
+      $ add a test case in tests.py to check that both first and last visit values are not future values and that they don't overlap (meaning last vist should be greaster or equal to first visit)
+
+
+19) Chapter 19 - Deploying your project
+   - 
